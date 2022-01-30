@@ -1,11 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import QuestionItem from './QuestionItem';
 
-class Home extends Component {  
-  render() {
-    return (
-      <div>Home</div>
-    );
-  }
+function Home(props) {
+  return (
+    <div>
+      {Object.values(props.questions).map(question => <QuestionItem key={question.id} question={question}/>)}
+    </div>
+  );
 }
 
-export default Home;
+export default connect(({ questions })=>({
+  questions
+}))(Home);

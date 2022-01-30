@@ -19,7 +19,7 @@ function Card (props) {
 
 Card.propTypes = {
   title: PropTypes.string.isRequired,
-  avatarURL: PropTypes.string.isRequired
+  imageURL: PropTypes.string.isRequired
 };
 
 export default Card;

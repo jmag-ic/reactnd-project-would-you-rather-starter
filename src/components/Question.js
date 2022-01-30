@@ -2,56 +2,62 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { handleAnswerQuestion } from '../actions/shared';
-
+import Card from './Card';
 
 class Question extends Component {
   static propTypes = {
-    id: PropTypes.string.isRequired
+    question: PropTypes.object.isRequired,
+    authedUser: PropTypes.string.isRequired,
+    author: PropTypes.object.isRequired
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedOption: this.options && this.options.lenght
-        ? this.options[0].key
-        : null
-    };
-  }
+  state = {
+    selectedOption: ''
+  };
 
-  onOptionChange(event) {
+  optionsKeys = ['optionOne', 'optionTwo'];
+
+  onOptionChange = (event) => {
     this.setState({
       selectedOption: event.target.value
     });
-  }
+  };
 
-  onSubmitAnswer(event) {
+  onSubmitAnswer = (event) => {
     event.preventDefault();
-    const { authedUser, id, dispatch } = this.props;
+    const { authedUser, question, dispatch } = this.props;
     const { selectedOption } = this.state;
-    dispatch(handleAnswerQuestion(authedUser, id, selectedOption));
-  }
+    dispatch(handleAnswerQuestion(authedUser, question.id, selectedOption));
+  };
 
   render() {
+    const { author, question } = this.props;
+    const { selectedOption } = this.state;
+
     return (
-      <form onSubmit={this.onSubmitAnswer}>
-        {this.props.options.map(option => (
-          <label>
-            <input
-              type="radio"
-              key={option.key}
-              value={option.key}
-              checked={this.state.selectedOption === option.key}
-              onChange={this.onOptionChange}/>
-            {option.text}
-          </label>
-        ))}
-        <button>Submit</button>
-      </form>
+      <Card
+        title={`${author.name} asks:`}
+        imageURL={author.avatarURL}>
+        <form onSubmit={this.onSubmitAnswer}>
+          <h1>Would You Rather...</h1>
+          {this.optionsKeys.map(optionKey => (
+            <label key={optionKey}>
+              <input
+                type="radio"
+                value={optionKey}
+                checked={selectedOption === optionKey}
+                onChange={this.onOptionChange}/>
+              {question[optionKey].text}
+            </label>
+          ))}
+          <button disabled={!selectedOption}>Submit</button>
+        </form>
+      </Card>
     );
   }
 }
 
-export default connect(({ questions, authedUser }, { id }) => ({
-  options: questions[id].options,
-  authedUser
+export default connect(({ authedUser, users }, { question }) => ({
+  authedUser,
+  author: users[question.author]
 }))(Question);
