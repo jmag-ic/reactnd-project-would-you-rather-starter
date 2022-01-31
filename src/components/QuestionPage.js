@@ -14,8 +14,8 @@ function QuestionPage(props) {
     ? <Navigate to="/page-not-found" />
     : (
         answered
-        ? <Question question={questions[id]}/>
-        : <div>Result</div>
+        ? <div>Result</div>
+        : <Question question={questions[id]}/>
       )
   );
 }

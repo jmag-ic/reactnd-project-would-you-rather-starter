@@ -13,7 +13,7 @@ import { fetchedDataAction } from './fetchedData';
 
 export const ANSWER_QUESTION = 'ANSWER_QUESTION';
 
-export function handleAnswerQuestion({ authedUser, qid, answer }) {
+export function handleAnswerQuestion(authedUser, qid, answer ) {
   return dispatch => {
     dispatch(answerQuestionAction(authedUser, qid, answer));
     return answerQuestion({
