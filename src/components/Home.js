@@ -1,15 +1,69 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuestionItem from './QuestionItem';
 
-function Home(props) {
-  return (
-    <div>
-      {Object.values(props.questions).map(question => <QuestionItem key={question.id} question={question}/>)}
-    </div>
-  );
+class Home extends Component {
+  state = {
+    selectedTab: 'answered'
+  };
+
+  onSelectAnswered = (event) => {
+    event.preventDefault();
+    this.setState({ selectedTab: 'answered' });
+  };
+
+  onSelectUnanswered = (event) => {
+    event.preventDefault();
+    this.setState({ selectedTab: 'unanswered' });
+  };
+
+  render() {
+    return (
+      <div>
+        <div className="tabs">
+          <button
+            className="tab"
+            onClick={this.onSelectAnswered}>
+            Answered
+          </button>
+          <button
+            className="tab"
+            onClick={this.onSelectUnanswered}>
+            Unanswered
+          </button>
+        </div>
+        <div className="question-list">
+          {this.state.selectedTab === 'answered' && this.props.answeredQuestions.map(
+            question => <QuestionItem key={question.id} question={question}/>
+          )}
+          {this.state.selectedTab === 'unanswered' && this.props.unansweredQuestions.map(
+            question => <QuestionItem key={question.id} question={question}/>
+          )}
+        </div>
+      </div>
+    );
+  }
 }
 
-export default connect(({ questions })=>({
-  questions
-}))(Home);
+function classifyQuestions(currentUser, questions) {
+  const answeredQuestions = [];
+  const unansweredQuestions = [];
+  const userAnswers = Object.keys(currentUser.answers);
+
+  Object.values(questions).forEach(question => {
+    if (userAnswers.includes(question.id)) {
+      answeredQuestions.push(question);
+    } else {
+      unansweredQuestions.push(question);
+    }
+  });
+
+  return {
+    answeredQuestions,
+    unansweredQuestions
+  };
+}
+
+export default connect(({ questions, users, authedUser }) => {
+  return classifyQuestions(users[authedUser], questions);
+})(Home);

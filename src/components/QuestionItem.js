@@ -9,6 +9,8 @@ function QuestionItem(props) {
     <Card
       title={`${props.author.name} asks:`}
       imageURL={props.author.avatarURL}>
+      <h2>Would you rather</h2>
+      <p>...{props.question.optionOne.text.substr(0, 15)}...</p>
       <Link to={`questions/${props.question.id}`}>View Poll</Link>
     </Card>
   );
