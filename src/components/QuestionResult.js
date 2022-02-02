@@ -19,10 +19,11 @@ function QuestionResult(props) {
       <h2>Results:</h2>
       {optionsKeys.map(optionKey => (
         <Result
+          key={optionKey}
           option={question[optionKey].text}
           votes={question[optionKey].votes.length}
           total={total}
-          voted={question[optionKey].votes.includes(props.author)} />
+          voted={question[optionKey].votes.includes(props.authedUser)} />
       ))}
     </Card>
   );
@@ -33,6 +34,7 @@ QuestionResult.propTypes = {
   author: PropTypes.object.isRequired
 };
 
-export default connect(({ users }, { question }) => ({
-  author: users[question.author]
+export default connect(({ users, authedUser }, { question }) => ({
+  author: users[question.author],
+  authedUser
 }))(QuestionResult);
