@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Navigate, useParams } from 'react-router';
 import PropTypes from 'prop-types';
 import Question from './Question';
+import QuestionResult from './QuestionResult';
 
 function QuestionPage(props) {
   const { questions, users, authedUser } = props;
@@ -14,8 +15,8 @@ function QuestionPage(props) {
     ? <Navigate to="/page-not-found" />
     : (
         answered
-        ? <div>Result</div>
-        : <Question question={questions[id]}/>
+        ? <QuestionResult question={questions[id]} />
+        : <Question question={questions[id]} />
       )
   );
 }

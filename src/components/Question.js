@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { handleAnswerQuestion } from '../actions/shared';
 import Card from './Card';
 
+export const optionsKeys = ['optionOne', 'optionTwo'];
+
 class Question extends Component {
   static propTypes = {
     question: PropTypes.object.isRequired,
@@ -14,8 +16,6 @@ class Question extends Component {
   state = {
     selectedOption: ''
   };
-
-  optionsKeys = ['optionOne', 'optionTwo'];
 
   onOptionChange = (event) => {
     this.setState({
@@ -40,7 +40,7 @@ class Question extends Component {
         imageURL={author.avatarURL}>
         <form onSubmit={this.onSubmitAnswer}>
           <h1>Would You Rather...</h1>
-          {this.optionsKeys.map(optionKey => (
+          {optionsKeys.map(optionKey => (
             <label key={optionKey}>
               <input
                 type="radio"
