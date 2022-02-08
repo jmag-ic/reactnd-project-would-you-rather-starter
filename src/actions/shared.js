@@ -1,7 +1,7 @@
 import {
   showLoading,
   hideLoading
-} from 'react-redux-loading';
+} from 'react-redux-loading-bar';
 import {
   answerQuestion,
   getQuestions,

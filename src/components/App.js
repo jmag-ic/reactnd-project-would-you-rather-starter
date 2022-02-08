@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import LoadingBar from 'react-redux-loading';
+import LoadingBar from 'react-redux-loading-bar';
 import { Navigate } from 'react-router';
 import { Route, Routes } from 'react-router-dom';
 import PropTypes from 'prop-types';
