@@ -1,11 +1,11 @@
-ul {
+.nav > ul.nav-items {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
-li {
+li.nav-item {
   float: left;
 }
 

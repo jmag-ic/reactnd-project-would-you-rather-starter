@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { handleLogin } from '../actions/authedUser';
+import '../styles/Login.css';
+import logo from '../images/logo.png';
 
 class Login extends Component {
   static propTypes = {
@@ -14,7 +16,7 @@ class Login extends Component {
 
   onSelectUser = event => {
     this.setState({
-      selectedUser: event.target.value
+      selectedUser: event.target.id
     });
   };
 
@@ -25,23 +27,25 @@ class Login extends Component {
 
   render() {
     const users = Object.values(this.props.users);
+    const { selectedUser } = this.state;
     return (
       <div className="login">
-        <form onSubmit={this.onSubmit}>
-          <select
-            value={this.state.selectedUser}
-            onChange={this.onSelectUser}>
-              <option value="">Select a user...</option>
+          <h3>Welcome to Would You Rather App!</h3>
+          <span>Please sign in to continue</span>
+          <img className="logo" src={logo} />
+          <ul className="login-selector">
               {users && users.map(user => (
-                <option
+                <li
                   key={user.id}
-                  value={user.id}>
-                  {user.name}
-                </option>
+                  id={user.id}
+                  onClick={this.onSelectUser}
+                  className={`login-item ${selectedUser === user.id ? 'selected': ''}`}>
+                  <img src={user.avatarURL} alt={user.name} className="avatar"/>
+                  <span>{user.name}</span>
+                </li>
               ))}
-          </select>
-          <button disabled={!this.state.selectedUser}>Login</button>
-        </form>
+          </ul>
+          <button disabled={!this.state.selectedUser} onClick={this.onSubmit}>Sign in</button>
       </div>
     );
   }
