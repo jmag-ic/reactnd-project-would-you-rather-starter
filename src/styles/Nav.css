@@ -1,14 +1,49 @@
-.nav > ul.nav-items {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+.nav {
+  padding: 0.5rem 2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: #1176a1;
+  color: #fff;
 }
 
-li.nav-item {
-  float: left;
+.nav > div.nav-items {
+  display: flex;
+  align-items: center;
 }
 
-li.nav-item-right {
-  float: right;
+
+.nav > div.nav-items > a {
+  text-decoration: none;
+  color: #fff;
+  padding: 0 0.5rem;
 }
+
+.nav > div.nav-items > a.active {
+  text-decoration: underline !important;
+}
+
+.nav > div.nav-items > div.current-user {
+  display: flex;
+  align-items: center;
+}
+
+.nav > div.nav-items > div.current-user > .avatar {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  border: 1px solid;
+}
+
+.nav > div.nav-items > div.current-user > span {
+  margin: 0 0.5rem;
+}
+
+.nav > div.nav-items > button {
+  color: #fff;
+  background-color: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+}
+

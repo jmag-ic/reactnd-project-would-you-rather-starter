@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { handleLogout } from '../actions/authedUser';
@@ -19,23 +19,27 @@ function Nav(props) {
 
   return (
     <div className="nav">
-      <ul className="nav-items">
+      <div className="nav-items">
         {props.items.map(item => (
-          <li className="nav-item" key={item.route}>
-            <Link to={item.route} className="nav-link">{item.label}</Link>
-          </li>
+          <NavLink
+            key={item.route}
+            to={item.route}
+            className={({isActive}) => isActive ? 'active' : null} >
+            {item.label}
+          </NavLink>
         ))}
-        <li className="nav-item-right">
-          <button
-            className="nav-link"
-            onClick={onLogout}>
-              Logout
-          </button>
-        </li>
-        <li className="nav-item-right">
+      </div>
+      <div className="nav-items">
+        <div className="current-user">
+          <img src={props.currentUser.avatarURL} alt="avatar" className="avatar"/>
           <span>{props.currentUser.name}</span>
-        </li>
-      </ul>
+        </div>
+        <button
+          className="nav-link"
+          onClick={onLogout}>
+            Logout
+        </button>
+      </div>
     </div>
   );
 }
