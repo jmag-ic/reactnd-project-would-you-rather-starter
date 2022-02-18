@@ -14,9 +14,9 @@ class Login extends Component {
     selectedUser: ''
   };
 
-  onSelectUser = event => {
+  onSelectUser = userId => {
     this.setState({
-      selectedUser: event.target.id
+      selectedUser: userId
     });
   };
 
@@ -28,6 +28,7 @@ class Login extends Component {
   render() {
     const users = Object.values(this.props.users);
     const { selectedUser } = this.state;
+    
     return (
       <div className="login">
           <h3>Welcome to Would You Rather App!</h3>
@@ -37,8 +38,7 @@ class Login extends Component {
               {users && users.map(user => (
                 <li
                   key={user.id}
-                  id={user.id}
-                  onClick={this.onSelectUser}
+                  onClick={event => this.onSelectUser(user.id)}
                   className={`login-item ${selectedUser === user.id ? 'selected': ''}`}>
                   <img src={user.avatarURL} alt={user.name} className="avatar"/>
                   <span>{user.name}</span>
