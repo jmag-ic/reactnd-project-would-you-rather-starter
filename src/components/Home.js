@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuestionItem from './QuestionItem';
+import '../styles/Home.css';
 
 class Home extends Component {
   state = {
@@ -17,17 +18,20 @@ class Home extends Component {
     this.setState({ selectedTab: 'unanswered' });
   };
 
+  getTabClassName = (tabName) =>
+    this.state.selectedTab === tabName ? 'active-tab' : 'tab';
+
   render() {
     return (
-      <div>
+      <div className="home">
         <div className="tabs">
           <button
-            className="tab"
+            className={this.getTabClassName('answered')}
             onClick={this.onSelectAnswered}>
             Answered
           </button>
           <button
-            className="tab"
+            className={this.getTabClassName('unanswered')}
             onClick={this.onSelectUnanswered}>
             Unanswered
           </button>
