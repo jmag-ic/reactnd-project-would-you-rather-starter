@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { handleAnswerQuestion } from '../actions/shared';
 import Card from './Card';
+import '../styles/Question.css';
 
 export const optionsKeys = ['optionOne', 'optionTwo'];
 

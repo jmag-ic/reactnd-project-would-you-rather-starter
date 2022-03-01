@@ -1,3 +1,9 @@
+div.card {
+    max-width: 30em;
+    margin: auto;
+    margin-bottom: 1rem;
+}
+
 div.card-header {
     text-align: left;
     font-weight: bold;
@@ -9,6 +15,7 @@ div.card-header {
 }
 
 div.card-body {
+    text-align: left;
     display: flex;
     border: 1px solid grey;
 }
