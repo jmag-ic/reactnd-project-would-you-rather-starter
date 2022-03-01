@@ -1,0 +1,29 @@
+div.card-header {
+    text-align: left;
+    font-weight: bold;
+    border-top: 1px solid grey;
+    border-left: 1px solid grey;
+    border-right: 1px solid grey;
+    padding: 0.5rem 1rem;
+    background-color: rgb(245, 245, 245);
+}
+
+div.card-body {
+    display: flex;
+    border: 1px solid grey;
+}
+
+div.card-avatar {
+    padding: 0.75rem;
+    border-right: 1px solid grey;
+}
+
+div.card-avatar > img.avatar {
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+}
+
+div.card-content {
+    padding: 0.75rem;
+}

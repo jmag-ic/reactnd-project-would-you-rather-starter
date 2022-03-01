@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../styles/Card.css';
+
 function Card (props) {
   return (
     <div className="card">
@@ -8,7 +10,9 @@ function Card (props) {
         {props.title}
       </div>
       <div className="card-body">
-        <div className="card-avatar"></div>
+        <div className="card-avatar">
+          <img src={props.imageURL} alt={props.title} className="avatar"/>
+        </div>
         <div className="card-content">
           {props.children}
         </div>
