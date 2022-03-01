@@ -39,7 +39,7 @@ class Question extends Component {
       <Card
         title={`${author.name} asks:`}
         imageURL={author.avatarURL}>
-        <form onSubmit={this.onSubmitAnswer}>
+        <form className="question" onSubmit={this.onSubmitAnswer}>
           <h1>Would You Rather...</h1>
           {optionsKeys.map(optionKey => (
             <label key={optionKey}>
