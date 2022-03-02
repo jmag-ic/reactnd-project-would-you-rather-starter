@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import "../styles/Result.css";
 
 function Result(props) {
-  const percent = (props.votes / props.total * 100);
+  const percent = (props.votes / props.total * 100).toFixed(0);
   return (
     <div className={props.voted ? 'voted result' : 'result'}>
       {props.voted && <div className="your-vote">
