@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuestionItem from './QuestionItem';
 import '../styles/Home.css';
+import questions from '../reducers/questions';
 
 class Home extends Component {
   state = {
@@ -21,6 +22,8 @@ class Home extends Component {
   getTabClassName = (tabName) =>
     this.state.selectedTab === tabName ? 'active-tab' : 'tab';
 
+  sortQuestions =(questions) => questions.sort((a, b) => b.timestamp - a.timestamp);
+
   render() {
     return (
       <div className="home">
@@ -37,10 +40,10 @@ class Home extends Component {
           </button>
         </div>
         <div className="question-list">
-          {this.state.selectedTab === 'answered' && this.props.answeredQuestions.map(
+          {this.state.selectedTab === 'answered' && this.sortQuestions(this.props.answeredQuestions).map(
             question => <QuestionItem key={question.id} question={question}/>
           )}
-          {this.state.selectedTab === 'unanswered' && this.props.unansweredQuestions.map(
+          {this.state.selectedTab === 'unanswered' && this.sortQuestions(this.props.unansweredQuestions).map(
             question => <QuestionItem key={question.id} question={question}/>
           )}
         </div>

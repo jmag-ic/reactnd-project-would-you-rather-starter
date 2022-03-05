@@ -8,7 +8,8 @@ export function handleCreateQuestion(optionOneText, optionTwoText, author) {
     const formattedQuestion = await createQuestion({
       optionOneText,
       optionTwoText,
-      author
+      author,
+      timestamp: Date.now()
     });
     dispatch(createQuestionAction(formattedQuestion));
   };
