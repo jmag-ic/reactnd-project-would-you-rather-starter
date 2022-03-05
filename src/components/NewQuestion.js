@@ -1,13 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { handleCreateQuestion } from '../actions/questions';
 import '../styles/NewQuestion.css';
+
+function Redirect({ to }) {
+  let navigate = useNavigate();
+  useEffect(() => {
+    navigate(to);
+  });
+  return null;
+}
 
 class NewQuestion extends Component {
   
   state = {
     optionOne: '',
-    optionTwo: ''
+    optionTwo: '',
+    redirect: false
   };
 
   onFormChange = (option, value) => {
@@ -19,13 +29,16 @@ class NewQuestion extends Component {
     const { dispatch, authedUser } = this.props;
     const { optionOne, optionTwo } = this.state;
     dispatch(handleCreateQuestion(optionOne, optionTwo, authedUser));
+    this.setState({ redirect: true });
   };
 
   isButtonDisabled = () => !this.state.optionOne.trim() || !this.state.optionTwo.trim();
 
   render() {
     return (
-      <div className="new-question">
+      this.state.redirect
+      ? <Redirect to="/" />
+      : <div className="new-question">
         <div className="header">
           <h1>Create New Question</h1>
         </div>
