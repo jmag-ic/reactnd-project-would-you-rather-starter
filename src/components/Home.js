@@ -5,7 +5,7 @@ import '../styles/Home.css';
 
 class Home extends Component {
   state = {
-    selectedTab: 'answered'
+    selectedTab: 'unanswered'
   };
 
   onSelectAnswered = (event) => {
