@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QuestionItem from './QuestionItem';
 import '../styles/Home.css';
-import questions from '../reducers/questions';
 
 class Home extends Component {
   state = {
