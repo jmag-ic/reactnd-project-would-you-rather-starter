@@ -5,6 +5,7 @@ div.new-question {
 }
 
 div.new-question > div.header {
+    padding: 0.5rem;
     background-color: #e3e7e9;
 }
 

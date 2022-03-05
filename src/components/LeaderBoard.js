@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import BoardItem from './BoardItem';
 
 function LeaderBoard(props) {
-  return props.users.map(user => 
-    <BoardItem key={user.id} id={user.id} />
+  return props.users.map((user, index) => 
+    <BoardItem key={user.id} id={user.id} rank={index + 1}/>
   );
 }
 
