@@ -1,0 +1,15 @@
+div.empty-list {
+    width: 30em;
+    height: 15em;
+    margin: auto;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+div.empty-list > span {
+    position: absolute;
+    font-weight: bold;
+    color:lightgray;
+    top: 40%;
+    transform: translateX(-50%);
+}
